@@ -35,7 +35,7 @@ ActionView::Helpers::AssetTagHelper.module_eval do
   alias :x_image_tag :image_tag
 
   def image_tag(*attrs)
-    if !attrs.last.delete(:lazy)
+    if !attrs.last && !attrs.last.delete(:lazy)
       x_image_tag(*attrs)
     else
       img = Nokogiri::HTML::DocumentFragment.parse(x_image_tag(*attrs)).at_css("img")
